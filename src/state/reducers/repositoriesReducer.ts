@@ -4,18 +4,27 @@ interface RepositoriesState {
   data: string[];
 }
 
-interface Action {
-  type: string;
-  payload?: any;
-}
-
 const SEARCH_REPOSITORIES = "search_repositories";
 const SEARCH_REPOSITORIES_SUCCESS = "search_repositories_success";
 const SEARCH_REPOSITORIES_ERROR = "search_repositories_error";
 
+interface SearchRepositoriesAction {
+  type: "search_repositories";
+}
+interface SearchRepositoriesSuccessAction {
+  type: "search_repositories_success";
+  payload: string[];
+}
+interface SearchRepositoriesErrorAction {
+  type: "search_repositories_error";
+  payload: string;
+}
 const reducer = (
   state: RepositoriesState,
-  action: Action
+  action:
+    | SearchRepositoriesAction
+    | SearchRepositoriesSuccessAction
+    | SearchRepositoriesErrorAction
 ): RepositoriesState => {
   switch (action.type) {
     case SEARCH_REPOSITORIES:
